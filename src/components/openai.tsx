@@ -30,7 +30,7 @@ import axios from 'axios';
 
 // const API_URL = 'https://api.openai.com/v1/engines/davinci/completions';
 const API_URL = 'https://api.openai.com/v1/engines/curie/completions';
-const API_KEY = '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';
+const API_KEY = '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';
 
 /**
  * Generates text based on a given prompt using the OpenAI API.
@@ -44,7 +44,7 @@ export const generateText = async (prompt: string) => {
       {
         prompt,
         temperature: 0.7,
-        max_tokens: 300,
+        max_tokens: 148,
         top_p: 0.8,
         frequency_penalty: 0,
         presence_penalty: 0,
@@ -58,6 +58,7 @@ export const generateText = async (prompt: string) => {
     );
 
     const generatedText = response.data.choices[0].text.trim();
+    // .split('\n\n')[0]
     return {generatedText};
   } catch (error) {
     console.error(`Error generating text: ${error}`);

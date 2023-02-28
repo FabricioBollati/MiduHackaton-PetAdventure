@@ -7,6 +7,7 @@ export const HomeScreen = () => {
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [color, setColor] = useState('');
+  const [raza, setRaza] = useState('');
   const [personality, setPersonality] = useState('');
   const navigation = useNavigation();
 
@@ -32,10 +33,17 @@ export const HomeScreen = () => {
         />
         <TextInput
           style={styles.input}
+          placeholder="Raza?"
+          value={raza}
+          onChangeText={setRaza}
+        />
+        <TextInput
+          style={styles.input}
           placeholder="Color of Pet's Hair"
           value={color}
           onChangeText={setColor}
         />
+
         <TextInput
           style={styles.input}
           placeholder="Type of Personality (e.g. silly, adventurous, grumpy, etc.)"
@@ -51,6 +59,7 @@ export const HomeScreen = () => {
               type: type,
               name: name,
               personality: personality,
+              raza: raza,
             })
           }
         />

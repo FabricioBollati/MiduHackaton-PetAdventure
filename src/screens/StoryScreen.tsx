@@ -1,4 +1,11 @@
-import {Text, View, ActivityIndicator, StyleSheet, Image} from 'react-native';
+import {
+  Text,
+  View,
+  ActivityIndicator,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from 'react-native';
 import {useEffect, useState} from 'react';
 import Loading from '../components/isLoading';
 import {generateText} from '../components/openai';
@@ -21,8 +28,12 @@ export const StoryScreen = ({route}: any) => {
       // const firstParagraph = paragraphs[0];
       // console.log(firstParagraph);
       setIsLoading(false);
+
+      setIsLoading(true);
       const imageData = await generateImage(promptDalle);
       setImageData(imageData);
+      setIsLoading(false);
+
       // console.log(imageData);
     } catch (error) {
       // console.log(error);
@@ -34,7 +45,13 @@ export const StoryScreen = ({route}: any) => {
   }, []);
 
   return (
-    <View>
+    <ScrollView style={styles.container}>
+      <View style={styles.logo}>
+        <Text style={styles.pet}>
+          Pet<Text style={styles.adventure}>Adventure</Text>
+        </Text>
+      </View>
+
       {isLoading ? (
         <View style={styles.loadingIndicator}>
           <ActivityIndicator color="black" size={50} />
@@ -51,28 +68,66 @@ export const StoryScreen = ({route}: any) => {
               </View>
             ) : (
               imageData && (
-                <Image source={{uri: imageData}} style={styles.outputImage} />
+                <View style={styles.imageContainer}>
+                  <Image source={{uri: imageData}} style={styles.outputImage} />
+                </View>
               )
             )}
           </View>
         )
       )}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  output: {
-    marginTop: 6,
+  container: {
+    flex: 1,
+    marginHorizontal: 10,
+  },
+  logo: {
     alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  pet: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#524571',
+  },
+  adventure: {
+    color: '#8F78C6',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  output: {
+    backgroundColor: '#d4d1e3',
+    marginTop: 20,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: '#b3aaf2',
+    padding: 20,
+    marginBottom: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
   },
   outputTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 16,
+    color: '#1d173d',
   },
   outputText: {
     fontSize: 16,
+    color: '#382b78',
   },
   loadingIndicator: {
     flex: 1,
@@ -80,7 +135,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   outputImage: {
-    height: 256,
-    width: 256,
+    height: 200,
+    width: 170,
+    borderRadius: 10,
+  },
+  imageContainer: {
+    shadowColor: '#000',
+    marginTop: 12,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 10,
   },
 });

@@ -30,7 +30,7 @@ import axios from 'axios';
 
 // const API_URL = 'https://api.openai.com/v1/engines/davinci/completions';
 const API_URL = 'https://api.openai.com/v1/engines/curie/completions';
-const API_KEY = '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';
+const API_KEY = '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';
 
 /**
  * Generates text based on a given prompt using the OpenAI API.

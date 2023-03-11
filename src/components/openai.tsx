@@ -1,7 +1,7 @@
 // import axios from 'axios';
 
-// const API_URL = 'https://api.openai.com/v1/engines/davinci/completions';
-// const API_KEY = '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';
+// const API_URL = 
+// const API_KEY = 
 
 // export const generateText = async (prompt: any) => {
 //   const response = await axios.post(
@@ -28,9 +28,8 @@
 
 import axios from 'axios';
 
-// const API_URL = 'https://api.openai.com/v1/engines/davinci/completions';
 const API_URL = 'https://api.openai.com/v1/engines/curie/completions';
-const API_KEY = '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';
+const API_KEY = 
 
 /**
  * Generates text based on a given prompt using the OpenAI API.
